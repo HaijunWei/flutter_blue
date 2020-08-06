@@ -13,22 +13,10 @@ A new flutter plugin project.
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.public_header_files = 'Classes/**/*.h', 'gen/**/*.h'
   s.dependency 'Flutter'
   s.dependency '!ProtoCompiler'
   s.framework = 'CoreBluetooth'
-
-  #protoc = "#{PODS_ROOT}/!ProtoCompiler/protoc"
-  protoc = ENV['PWD'] + '/Pods/!ProtoCompiler/protoc'
-  objc_out = 'gen'
-  proto_in = '../protos'
-  s.prepare_command = <<-CMD
-    mkdir -p #{objc_out}
-    #{protoc} \
-        --objc_out=#{objc_out} \
-        --proto_path=#{proto_in} \
-        #{proto_in}/*.proto
-  CMD
 
   s.subspec 'Protos' do |ss|
     ss.source_files = 'gen/**/*.pbobjc.{h,m}'
